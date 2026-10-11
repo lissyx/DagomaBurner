@@ -1,13 +1,12 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var ModalManager = require(_root+"manager/modalManager.js");
-var CodeBuilder = require(_root+"manager/codeBuilder.js");
-var I18n = require(_root+"i18n/i18n.js");
-var GCodeSender = require(_root+"controllers/utils/GCodeSender.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import ModalManager from "../../../manager/modalManager.js";
+import CodeBuilder from "../../../manager/codeBuilder.js";
+import I18n from "../../../i18n/i18n.js";
+import GCodeSender from "../../utils/GCodeSender.js";
+import DeviceManager from "../../../manager/devices.js";
 
 var FirmwareFirmwareClass = function FirmwareFirmwareClass(){
   this.content = null;
@@ -50,7 +49,7 @@ FirmwareFirmwareClass.prototype.show = function () {
   $btn.on("click", function(){
     ModalManager.showLoader(I18n.currentLanguage().firmware_burning);
     console.log("window.printer", window.printer);
-    new CodeBuilder(DeviceManager.getSelectedDevice(), file.path, window.printer.bootloader, function(success){
+    new CodeBuilder(DeviceManager.getSelectedDevice(), file, window.printer.bootloader, function(success){
       GCodeSender.send([
         "M502",
         "M500"],
@@ -97,4 +96,4 @@ FirmwareFirmwareClass.prototype.show = function () {
 FirmwareFirmwareClass.prototype.dispose = function () {
 };
 
-module.exports = FirmwareFirmwareClass;
+export default FirmwareFirmwareClass;

@@ -1,141 +1,19 @@
 "use strict";
 
-var _root = __dirname + "/../";
-var DeviceManager = require(_root+"manager/devices.js");
-var FirmwareController = require(_root+"controllers/firmware.js");
-var PortSelectorController = require(_root+"controllers/portSelector.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var ModalManager = require(_root+"manager/modalManager.js");
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var I18n = require(_root+"i18n/i18n.js");
+import { getCurrentWindow } from "@tauri-apps/api/window";
+import { openUrl } from "@tauri-apps/plugin-opener";
+import pkg from "../../package.json";
+import setApplicationMenu from "../lib/appMenu.js";
+import DeviceManager from "../manager/devices.js";
+import FirmwareController from "./firmware.js";
+import PortSelectorController from "./portSelector.js";
+import NavManager from "../manager/NavManager.js";
+import ModalManager from "../manager/modalManager.js";
+import ViewLoader from "./utils/ViewLoader.js";
+import I18n from "../i18n/i18n.js";
 I18n.initLanguage();
 
-const {remote} = require('electron');
-const {Menu, MenuItem} = remote;
-
-var template = [
-  {
-    label: 'DagomApp',
-    submenu: [
-      {
-        label: 'DagomApp',
-        selector: 'orderFrontStandardAboutPanel:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Hide DagomApp',
-        accelerator: 'Command+H',
-        selector: 'hide:'
-      },
-      {
-        label: 'Hide Others',
-        accelerator: 'Command+Shift+H',
-        selector: 'hideOtherApplications:'
-      },
-      {
-        label: 'Show All',
-        selector: 'unhideAllApplications:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Quit',
-        accelerator: 'Command+Q',
-        click() { require('electron').remote.app.quit(); }
-      },
-    ]
-  },
-  {
-    label: 'View',
-    submenu: [
-      {
-        label: 'Reload',
-        accelerator: 'Command+R',
-        click(item, focusedWindow) {
-          if (focusedWindow) focusedWindow.reload();
-          if(window.currentBounds && focusedWindow){
-            focusedWindow.setBounds(window.currentBounds);
-            focusedWindow.setResizable(false);
-          }
-        }
-      },
-      {
-        label: 'Toggle Developer Tools',
-          accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        click(item, focusedWindow) {
-          if (focusedWindow)
-            focusedWindow.webContents.toggleDevTools();
-        }
-      }
-    ]
-  },
-  {
-    label: 'Edit',
-    submenu: [
-      {
-        label: 'Undo',
-        accelerator: 'Command+Z',
-        selector: 'undo:'
-      },
-      {
-        label: 'Redo',
-        accelerator: 'Shift+Command+Z',
-        selector: 'redo:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Cut',
-        accelerator: 'Command+X',
-        selector: 'cut:'
-      },
-      {
-        label: 'Copy',
-        accelerator: 'Command+C',
-        selector: 'copy:'
-      },
-      {
-        label: 'Paste',
-        accelerator: 'Command+V',
-        selector: 'paste:'
-      },
-      {
-        label: 'Select All',
-        accelerator: 'Command+A',
-        selector: 'selectAll:'
-      },
-    ]
-  },
-  {
-    label: 'Window',
-    submenu: [
-      {
-        label: 'Minimize',
-        accelerator: 'Command+M',
-        selector: 'performMiniaturize:'
-      },
-      {
-        label: 'Close',
-        accelerator: 'Command+W',
-        selector: 'performClose:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Bring All to Front',
-        selector: 'arrangeInFront:'
-      },
-    ]
-  }
-];
-
-const menu = Menu.buildFromTemplate(template);
-Menu.setApplicationMenu(menu);
+setApplicationMenu();
 
 ( function( $ ) {
 
@@ -153,11 +31,9 @@ function setView(){
 
 function initPage(){
 
-  const shell = require('electron').shell;
-
   $(document).on('click', 'a[href^="http"], a[href^="mailto:"]', function(event) {
       event.preventDefault();
-      shell.openExternal(this.href);
+      openUrl(this.href);
   });
 
   NavManager.setContainer($("#pageContainer"));
@@ -223,10 +99,10 @@ function initPage(){
     setView();
   });
 
-  $("#language img").attr("src", "../static/images/flags/"+I18n.currentLanguageID+".gif");
+  $("#language img").attr("src", "/static/images/flags/"+I18n.currentLanguageID+".gif");
 
   $("#navbar a.close").click(function(){
-    remote.getCurrentWindow().close();
+    getCurrentWindow().close();
   });
 
   $('select').material_select();
@@ -235,12 +111,11 @@ function initPage(){
   //ModalManager.setProgress(50);
   $('.tooltipped').tooltip({delay: 50});
 
-  $("#version").text("V"+require(_root+"package.json").version);
+  $("#version").text("V"+pkg.version);
 
-  if(require(_root+"package.json").beta){
+  if(pkg.beta){
     $("body").addClass("beta");
-    $("#version").append("<span class=\"beta\">b"+require(_root+"package.json").betaNumber+"</span>")
+    $("#version").append("<span class=\"beta\">b"+pkg.betaNumber+"</span>")
   }
 
-  $("#savBar").hide();
 }

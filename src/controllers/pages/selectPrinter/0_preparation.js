@@ -1,9 +1,8 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import DeviceManager from "../../../manager/devices.js";
 
 var SelectPrinterPreparationClass = function SelectPrinterPreparationClass(){
   this.content = null;
@@ -64,4 +63,4 @@ SelectPrinterPreparationClass.prototype.dispose = function () {
 
 };
 
-module.exports = SelectPrinterPreparationClass;
+export default SelectPrinterPreparationClass;

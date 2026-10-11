@@ -1,0 +1,17 @@
+[package]
+name = "dagomapp-frontend"
+version = "0.1.0"
+description = "Builds and serves the DagomApp frontend with a Node.js installed in target/"
+edition = "2021"
+publish = false
+
+[dependencies]
+sha2 = "0.11.0"
+ureq = "3.4.2"
+
+[target."cfg(not(windows))".dependencies]
+flate2 = "1.1.10"
+tar = "0.4.46"
+
+[target."cfg(windows)".dependencies]
+zip = { version = "9.0.1", default-features = false, features = ["deflate"] }

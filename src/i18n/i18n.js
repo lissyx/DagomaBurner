@@ -1,7 +1,14 @@
 "use strict";
 
-var root = __dirname + "/../";
-var osLocale = require('os-locale');
+import fr from "./fr.json";
+import en from "./en.json";
+
+// Browser replacement for the `os-locale` module.
+var osLocale = {
+  sync: function(){
+    return navigator.language || "en";
+  }
+};
 
 var I18nClass = function I18nClass(){
   this.context = null;
@@ -25,11 +32,11 @@ I18nClass.prototype.initLanguage = function(){
 }
 
 I18nClass.prototype.setLanguage = function(local){
-  if(local.split("_")[0] == "fr"){
-    this.context = require("./fr.json");
+  if(local.split(/[-_]/)[0] == "fr"){
+    this.context = fr;
     this.currentLanguageID = "fr";
   }else{
-    this.context = require("./en.json");
+    this.context = en;
     this.currentLanguageID = "en";
   }
 
@@ -49,4 +56,4 @@ I18nClass.getInstance = function(){
     return this.instance;
 }
 
-module.exports = I18nClass.getInstance();
+export default I18nClass.getInstance();

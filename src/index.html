@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>DagomApp</title>
+		<meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="/static/vendors/materialize/css/googleMaterialIcon.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/static/vendors/materialize/css/materialize.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/index.css" media="screen,projection"/>
+  </head>
+  <body>
+    <div id="content">
+
+    </div>
+    <!-- Vendored libraries are plain scripts that define window globals; they are served unbundled from /static. -->
+    <script type="text/javascript" src="/static/vendors/jquery/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/static/vendors/hammer/hammer.min.js"></script>
+    <script type="text/javascript" src="/static/vendors/handlebars/handlebars-v4.0.5.js"></script>
+    <script type="text/javascript" src="/static/vendors/plotly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+      document.jQuery = window.jQuery;
+    </script>
+
+    <script type="text/javascript" src="/static/vendors/materialize/js/materialize.js"></script>
+    <script type="module" src="/controllers/index.js"></script>
+  </body>
+</html>

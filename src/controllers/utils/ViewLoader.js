@@ -1,12 +1,14 @@
 "use strict";
 
-var fs = require('fs');
-var i18n = require('../../i18n/i18n.js');
+import i18n from "../../i18n/i18n.js";
 
-module.exports = function loadFile(file, callback){
+// Templates are bundled at build time instead of being read from disk with `fs`.
+var views = import.meta.glob("../../views/**/*.html", { query: "?raw", import: "default", eager: true });
+
+export default function loadFile(file, callback){
   //console.log("loadFile",file);
   var that = this;
-  var data = fs.readFileSync(__dirname + "/../../"+'views/'+file+".html", 'utf8')
+  var data = views["../../views/"+file+".html"];
   //console.log("file readed");
   var template = Handlebars.compile(data);
   //console.log("file compiled");

@@ -1,14 +1,14 @@
 "use strict";
 
-var _root = __dirname + "/../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var lodash = require("lodash");
-var DeviceManager = require(_root+"manager/devices.js");
-var GCodeSender = require(_root+"controllers/utils/GCodeSender.js");
-var GCodeParser = require(_root+"controllers/utils/GCodeParser.js");
-var GCodePrinter = require(_root+"controllers/utils/GCodePrinter.js");
+import ViewLoader from "../utils/ViewLoader.js";
+import NavManager from "../../manager/NavManager.js";
+import lodash from "lodash";
+import DeviceManager from "../../manager/devices.js";
+import GCodeSender from "../utils/GCodeSender.js";
+import GCodeParser from "../utils/GCodeParser.js";
+import GCodePrinter from "../utils/GCodePrinter.js";
+import ModalManager from "../../manager/modalManager.js";
+import I18n from "../../i18n/i18n.js";
 
 var DiagnosticPageClass = function DiagnosticPageClass(){
   this.content = null;
@@ -257,4 +257,4 @@ DiagnosticPageClass.prototype.dispose = function () {
   $("#navbar h1").text("DagomApp");
 };
 
-module.exports = DiagnosticPageClass;
+export default DiagnosticPageClass;

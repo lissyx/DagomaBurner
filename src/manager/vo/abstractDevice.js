@@ -1,7 +1,5 @@
 "use strict";
 
-var root = __dirname + "/../";
-
 var AbstractDeviceClass = function(name, child){
 
 	this.child = child;
@@ -68,4 +66,4 @@ AbstractDeviceClass.prototype.resume = function(portName)
 }
 
 
-module.exports = AbstractDeviceClass;
+export default AbstractDeviceClass;

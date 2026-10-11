@@ -1,10 +1,8 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var DeviceManager = require(_root+"manager/devices.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import DeviceManager from "../../../manager/devices.js";
 
 
 var ZoffsetSetJumperMelziClass = function ZoffsetSetJumperMelziClass(){
@@ -42,4 +40,4 @@ ZoffsetSetJumperMelziClass.prototype.show = function () {
 ZoffsetSetJumperMelziClass.prototype.dispose = function () {
 };
 
-module.exports = ZoffsetSetJumperMelziClass;
+export default ZoffsetSetJumperMelziClass;

@@ -1,6 +1,5 @@
-var root = __dirname + "/../";
-var DeviceManager = require(_root+"manager/devices.js");
-var I18n = require(_root+"i18n/i18n.js");
+import DeviceManager from "../manager/devices.js";
+import I18n from "../i18n/i18n.js";
 
 var PortSelectorControllerClass = function($ref){
   var that = this;
@@ -81,4 +80,4 @@ PortSelectorControllerClass.prototype.removeDeviceList = function(device){
   device.$select.remove();
 }
 
-module.exports = PortSelectorControllerClass;
+export default PortSelectorControllerClass;

@@ -1,8 +1,7 @@
 "use strict";
 
-var _root = __dirname + "/../../";
-var DeviceManager = require(_root+"manager/devices.js");
-var lodash = require("lodash");
+import DeviceManager from "../../manager/devices.js";
+import lodash from "lodash";
 
 var awaitForAck = true;
 
@@ -117,4 +116,4 @@ GCodeSenderClass.getInstance = function(){
     return this.instance;
 }
 
-module.exports = GCodeSenderClass.getInstance();
+export default GCodeSenderClass.getInstance();

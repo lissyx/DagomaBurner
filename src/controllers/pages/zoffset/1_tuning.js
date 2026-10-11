@@ -1,10 +1,10 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var GCodeSender = require(_root+"controllers/utils/GCodeSender.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import GCodeSender from "../../utils/GCodeSender.js";
+import ModalManager from "../../../manager/modalManager.js";
+import I18n from "../../../i18n/i18n.js";
 
 var ZoffsetTuningClass = function ZoffsetTuningClass(){
   this.content = null;
@@ -117,4 +117,4 @@ ZoffsetTuningClass.prototype.dispose = function () {
 
 };
 
-module.exports = ZoffsetTuningClass;
+export default ZoffsetTuningClass;

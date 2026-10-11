@@ -1,6 +1,7 @@
 "use strict";
 
-var _root = __dirname + "/../";
+// Page controllers are bundled up front so pages can still be created synchronously by name.
+var pages = import.meta.glob("../controllers/pages/**/*.js", { import: "default", eager: true });
 
 var NavManagerClass = function NavManagerClass(){
   this.backPage = [];
@@ -27,7 +28,7 @@ NavManagerClass.prototype.setPage = function (page) {
   this.currentPage = page;
 
   that.container.empty();
-  that.page = new (require(_root+"controllers/pages/"+page+".js"))();
+  that.page = new (pages["../controllers/pages/"+page+".js"])();
   that.page.load(function(){
     that.container.append(that.page.content);
     that.page.show();
@@ -73,4 +74,4 @@ NavManagerClass.getInstance = function(){
     return this.instance;
 }
 
-module.exports = NavManagerClass.getInstance();
+export default NavManagerClass.getInstance();

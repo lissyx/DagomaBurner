@@ -1,14 +1,13 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var ModalManager = require(_root+"manager/modalManager.js");
-var GCodeSender = require(_root+"controllers/utils/GCodeSender.js");
-var GCodeParser = require(_root+"controllers/utils/GCodeParser.js");
-var GCodePrinter = require(_root+"controllers/utils/GCodePrinter.js");
-var I18n = require(_root+"i18n/i18n.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import ModalManager from "../../../manager/modalManager.js";
+import GCodeSender from "../../utils/GCodeSender.js";
+import GCodeParser from "../../utils/GCodeParser.js";
+import GCodePrinter from "../../utils/GCodePrinter.js";
+import I18n from "../../../i18n/i18n.js";
+import DeviceManager from "../../../manager/devices.js";
 
 var ZoffsetTestPrintingClass = function ZoffsetTestPrintingClass(){
   this.content = null;
@@ -105,7 +104,7 @@ ZoffsetTestPrintingClass.prototype.show = function () {
 
   $("#navBack").hide();
 
-  GCodeParser(_root+"/pastille.g", function(datas){
+  GCodeParser("pastille.g", function(datas){
     that.roundDatas = datas;
     ModalManager.showLoader(I18n.currentLanguage().z_offset_print_heating);
     that.printer  = new GCodePrinter();
@@ -150,4 +149,4 @@ ZoffsetTestPrintingClass.prototype.dispose = function () {
 
 };
 
-module.exports = ZoffsetTestPrintingClass;
+export default ZoffsetTestPrintingClass;

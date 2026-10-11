@@ -1,3 +1,6 @@
+import CodeBuilder from "../manager/codeBuilder.js";
+import ModalManager from "../manager/modalManager.js";
+
 var FirmwareControllerClass = function(oPortSelectorController){
   var $dropZone = $("html");
   var $dragZone = $("#firmware .drag");
@@ -59,15 +62,15 @@ var FirmwareControllerClass = function(oPortSelectorController){
 
   $btn.on("click", function(){
     $("#globalLoader").show();
-    new CodeBuilder(portSelectorController.selectedDevice(), file.path, $('select#type').val(), function(success){
+    new CodeBuilder(portSelectorController.selectedDevice(), file, $('select#type').val(), function(success){
       $("#globalLoader").hide();
       if(success)
-        alert("Success");
+        ModalManager.alert("Success", "");
       else
-        alert("Error");
+        ModalManager.alert("Error", "");
     });
   })
 };
 
 
-module.exports = FirmwareControllerClass;
+export default FirmwareControllerClass;

@@ -1,17 +1,18 @@
 "use strict";
 
-var root = __dirname + "/../";
-
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+import { EventEmitter, inherits } from "../lib/events.js";
 //var SerialPortLib = require("serial-worker"); //From Tibus Github
-var SerialPortLib = require("serialport");
+import SerialPortLib from "../lib/serialport.js";
 var SerialPort = SerialPortLib.SerialPort;
 
-var DeviceUSB = require(root+"manager/vo/deviceUSB.js");
-var DeviceTest = require(root+"manager/vo/deviceTest.js");
+import DeviceUSB from "./vo/deviceUSB.js";
+import DeviceTest from "./vo/deviceTest.js";
 //var DeviceWifi = require(root+"models/vo/deviceWifi.js");
-var NavManager = require(_root+"manager/NavManager.js");
+
+// USB-serial bridges used by the printers. Manufacturer strings differ between
+// OSes and serial libraries, so also match on the USB vendor ID.
+var KNOWN_MANUFACTURERS = ["FTDI", "Silicon Labs", "Silicon_Labs"];
+var KNOWN_VENDOR_IDS = [0x0403 /* FTDI */, 0x10c4 /* Silicon Labs */];
 
 var DeviceManagerClass = function DeviceManagerClass(){
   EventEmitter.call(this);
@@ -36,7 +37,7 @@ var DeviceManagerClass = function DeviceManagerClass(){
   //that.createDevice("test11", new DeviceTest("test11", 1023402, "Sikwi", 11,1,1,1));
 }
 
-util.inherits(DeviceManagerClass, EventEmitter);
+inherits(DeviceManagerClass, EventEmitter);
 
 DeviceManagerClass.prototype.resetPort = function(){
   var that = this;
@@ -46,7 +47,7 @@ DeviceManagerClass.prototype.resetPort = function(){
     results.forEach(function(port){
         var portName = port.comName;
         //console.log(port);
-        if(that.devices[portName] == null && ["FTDI", "Silicon Labs"].includes(port.manufacturer)){
+        if(that.devices[portName] == null && (KNOWN_MANUFACTURERS.includes(port.manufacturer) || KNOWN_VENDOR_IDS.includes(port.vendorId))){
             console.log("port.serialNumber", port.serialNumber);
             //that.createDevice(portName, new DeviceUSB(portName, port.pnpId, port.manufacturer));
             that.createDevice(portName, new DeviceUSB(portName, port.serialNumber, port.manufacturer));
@@ -141,4 +142,4 @@ DeviceManagerClass.getInstance = function(){
     return this.instance;
 }
 
-module.exports = DeviceManagerClass.getInstance();
+export default DeviceManagerClass.getInstance();

@@ -1,9 +1,7 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
 
 var ZoffsetChoseClass = function ZoffsetChoseClass(){
   this.content = null;
@@ -66,4 +64,4 @@ ZoffsetChoseClass.prototype.dispose = function () {
 
 };
 
-module.exports = ZoffsetChoseClass;
+export default ZoffsetChoseClass;

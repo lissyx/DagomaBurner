@@ -1,13 +1,16 @@
-module.exports = function(sPath, fCallback) {
+// G-code files are bundled at build time instead of being streamed from disk with `fs`.
+var files = import.meta.glob("../../*.g", { query: "?raw", import: "default", eager: true });
+
+export default function(sName, fCallback) {
   var result = [],
       aLine,
-      fLineReader;
+      lines = files["../../"+sName].split(/\r?\n/);
 
-  fLineReader = require('readline').createInterface({
-    input: require('fs').createReadStream(sPath)
-  });
+  // Like readline, don't report the empty "line" after the final newline.
+  if(lines[lines.length-1] == "")
+    lines.pop();
 
-  fLineReader.on('line', function (line) {
+  lines.forEach(function (line) {
     aLine = line.trim();
     if(line[0]==";")
       aLine = null;
@@ -15,7 +18,5 @@ module.exports = function(sPath, fCallback) {
       result.push(aLine);
   });
 
-  fLineReader.on('close', function(){
-    fCallback(result);
-  });
+  fCallback(result);
 }

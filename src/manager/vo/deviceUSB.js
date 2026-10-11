@@ -1,14 +1,14 @@
 "use strict";
 
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+import { EventEmitter, inherits } from "../../lib/events.js";
 //var SerialPortLib = require("serial-worker");
-var SerialPortLib = require("serialport");
+import SerialPortLib from "../../lib/serialport.js";
 //var SerialPortLibNative = require("serialport");
 var SerialPort = SerialPortLib.SerialPort;
-var AbstractDeviceClass = require("./abstractDevice.js");
+import AbstractDeviceClass from "./abstractDevice.js";
+import ModalManager from "../modalManager.js";
+import I18n from "../../i18n/i18n.js";
 
-var root = __dirname + "/../";
 var data = "";
 
 var DeviceClassUSB = function(portName, uid, manufacturer){
@@ -25,7 +25,7 @@ var DeviceClassUSB = function(portName, uid, manufacturer){
   this.serialDataListener = this.serialPortDataHandler.bind(this);
 };
 
-util.inherits(DeviceClassUSB, EventEmitter);
+inherits(DeviceClassUSB, EventEmitter);
 
 DeviceClassUSB.prototype.templateObject = function (deviceData){
   return this.parent.templateObject(deviceData);
@@ -287,4 +287,4 @@ DeviceClassUSB.prototype.resume = function(){
   }
 }
 
-module.exports = DeviceClassUSB;
+export default DeviceClassUSB;

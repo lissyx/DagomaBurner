@@ -1,14 +1,16 @@
 {
-  "name": "DagomaDoctor-BuildProject",
-  "version": "0.0.0",
-  "author": "Dagom'App",
+  "name": "dagomapp",
+  "version": "0.2.61",
+  "description": "DagomApp",
+  "author": "Dagoma",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "electron-packager": "^7.7.0",
-    "jq": "^1.7.2",
-    "os-locale": "^1.4.0",
-    "winston": "^2.2.0"
+    "@tauri-apps/api": "^2.12.2",
+    "@tauri-apps/plugin-opener": "^2.7.0",
+    "lodash": "^4.18.1"
   },
-  "devDependencies": {},
-  "scripts": {}
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
 }

@@ -1,14 +1,12 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var ModalManager = require(_root+"manager/modalManager.js");
-var GCodeSender = require(_root+"controllers/utils/GCodeSender.js");
-var GCodeParser = require(_root+"controllers/utils/GCodeParser.js");
-var GCodePrinter = require(_root+"controllers/utils/GCodePrinter.js");
-var config = require(_root+"config.json");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import ModalManager from "../../../manager/modalManager.js";
+import GCodeSender from "../../utils/GCodeSender.js";
+import GCodeParser from "../../utils/GCodeParser.js";
+import GCodePrinter from "../../utils/GCodePrinter.js";
+import config from "../../../config.json";
 
 var ZoffsetMoveNozzleClass = function ZoffsetMoveNozzleClass(){
   this.content = null;
@@ -128,4 +126,4 @@ ZoffsetMoveNozzleClass.prototype.dispose = function () {
   $(document).off("mouseup", this.mouseUpListener);
 };
 
-module.exports = ZoffsetMoveNozzleClass;
+export default ZoffsetMoveNozzleClass;

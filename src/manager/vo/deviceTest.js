@@ -1,12 +1,9 @@
 "use strict";
 
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+import { EventEmitter, inherits } from "../../lib/events.js";
 //var SerialPortLib = require("serialport-worker");
 //var SerialPort = SerialPortLib.SerialPort;
-var AbstractDeviceClass = require("./abstractDevice.js");
-
-var root = __dirname + "/../";
+import AbstractDeviceClass from "./abstractDevice.js";
 
 var DeviceClassTest = function(portName, pnpId, manufacturer, typeId, version, shieldID, shieldVersion, shieldVariant){
   EventEmitter.call(this);
@@ -24,7 +21,7 @@ var DeviceClassTest = function(portName, pnpId, manufacturer, typeId, version, s
 	this.shieldVariant = shieldVariant;
 };
 
-util.inherits(DeviceClassTest, EventEmitter);
+inherits(DeviceClassTest, EventEmitter);
 
 DeviceClassTest.prototype.templateObject = function (deviceData){
   var that = this;
@@ -72,4 +69,4 @@ DeviceClassTest.prototype.resume = function()
 
 }
 
-module.exports = DeviceClassTest;
+export default DeviceClassTest;

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "DagomApp",
+  "version": "../package.json",
+  "identifier": "fr.dagoma.dagomapp",
+  "build": {
+    "beforeDevCommand": "cargo run --quiet -p dagomapp-frontend -- dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "cargo run --quiet -p dagomapp-frontend -- build",
+    "frontendDist": "../target/frontend/dist"
+  },
+  "app": {
+    "windows": [],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

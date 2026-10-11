@@ -7,7 +7,6 @@
   "disconnected_title":"Oups !",
   "disconnected_message":"Votre imprimante s'est déconnectée!",
   "home_configure":"Je configure mon imprimante",
-  "home_sav":"Je fais appel aux Dago’Experts",
   "configuration_firmware_title":"Je donne de nouveaux pouvoirs",
   "configuration_firmware_description":"Nous allons procéder à la mise à jour de votre imprimante.",
   "configuration_firmware_pro":"Firmware",
@@ -117,8 +116,6 @@
   "printer_connexion_no_detected":"Si votre imprimante n'est pas détectée, débranchez-la et rebranchez-la après 10 secondes",
   "printer_connexion_detected":"Imprimante détectée",
   "printer_connexion_searching":"Recherche d'une imprimante...",
-  "sav_code":"Votre code SAV : ",
-  "sav_connected":"Vous êtes connecté au SAV",
   "error_minmaxtemp_title":"Erreur de l'imprimante",
   "error_minmaxtemp_message":"L'imprimante n'a pas correctement détectée la tête d'impression, vérifiez les cablages"
 }

@@ -32,13 +32,5 @@
         "bootloader":"mega"
       }
     }
-  },
-  "sav":{
-    "url":"dago-meet-m2m.dagoma.net",
-    "port":9000,
-    "secure": true,
-    "path":"/meet-us"
-  },
-  "updateUrl":"THE_UPDATE_URL",
-  "build-date":"THE_BUILD_DATE"
+  }
 }

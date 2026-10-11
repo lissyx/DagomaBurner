@@ -7,7 +7,6 @@
   "disconnected_title":"Oops!",
   "disconnected_message":"Your printer is disconnected!",
   "home_configure":"Setting my printer",
-  "home_sav":"Get help from the Dago’Experts",
   "configuration_firmware_title":"Give new abilities",
   "configuration_firmware_description":"We are now going to update your printer.",
   "configuration_firmware_pro":"Firmware",
@@ -117,8 +116,6 @@
   "printer_connexion_no_detected":"If your printer hasn't been found: unplug it, wait 10 seconds and replug it",
   "printer_connexion_detected":"Printer found",
   "printer_connexion_searching":"Looking for your printer...",
-  "sav_code":"Your technical support code : ",
-  "sav_connected":"You are now connected to the technical support",
   "error_minmaxtemp_title":"Printer error",
   "error_minmaxtemp_message":"The printer can not see the printing head properly, please check the wiring"
 }

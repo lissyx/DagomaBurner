@@ -1,10 +1,9 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var I18n = require(_root+"i18n/i18n.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import I18n from "../../../i18n/i18n.js";
+import DeviceManager from "../../../manager/devices.js";
 
 var PrinterConnectionClass = function PrinterConnectionClass(){
   this.content = null;
@@ -178,4 +177,4 @@ PrinterConnectionClass.prototype.dispose = function () {
   $(document).off("keydown", this.keyDownListener);
 };
 
-module.exports = PrinterConnectionClass;
+export default PrinterConnectionClass;

@@ -1,9 +1,7 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
 
 var ZoffsetTestPrintStartClass = function ZoffsetTestPrintStartClass(){
   this.content = null;
@@ -37,4 +35,4 @@ ZoffsetTestPrintStartClass.prototype.show = function () {
 ZoffsetTestPrintStartClass.prototype.dispose = function () {
 };
 
-module.exports = ZoffsetTestPrintStartClass;
+export default ZoffsetTestPrintStartClass;

@@ -1,15 +1,13 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var config = require(_root+"config.json");
-var ModalManager = require(_root+"manager/modalManager.js");
-var GCodeSender = require(_root+"controllers/utils/GCodeSender.js");
-var GCodeParser = require(_root+"controllers/utils/GCodeParser.js");
-var GCodePrinter = require(_root+"controllers/utils/GCodePrinter.js");
-var I18n = require(_root+"i18n/i18n.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import config from "../../../config.json";
+import ModalManager from "../../../manager/modalManager.js";
+import GCodeSender from "../../utils/GCodeSender.js";
+import GCodeParser from "../../utils/GCodeParser.js";
+import GCodePrinter from "../../utils/GCodePrinter.js";
+import I18n from "../../../i18n/i18n.js";
 
 var ZoffsetPlaceTargetClass = function ZoffsetPlaceTargetClass(){
   this.content = null;
@@ -219,4 +217,4 @@ ZoffsetPlaceTargetClass.prototype.show = function () {
 ZoffsetPlaceTargetClass.prototype.dispose = function () {
 };
 
-module.exports = ZoffsetPlaceTargetClass;
+export default ZoffsetPlaceTargetClass;

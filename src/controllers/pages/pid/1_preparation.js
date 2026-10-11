@@ -1,9 +1,7 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
 
 var PIDPreparationClass = function PIDPreparationClass(){
   this.content = null;
@@ -61,4 +59,4 @@ PIDPreparationClass.prototype.dispose = function () {
 
 };
 
-module.exports = PIDPreparationClass;
+export default PIDPreparationClass;

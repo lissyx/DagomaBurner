@@ -1,11 +1,9 @@
 "use strict";
 
-var _root = __dirname + "/../../../";
-
-var ViewLoader = require(_root+"controllers/utils/ViewLoader.js");
-var NavManager = require(_root+"manager/NavManager.js");
-var DeviceManager = require(_root+"manager/devices.js");
-var config = require(_root+"config.json");
+import ViewLoader from "../../utils/ViewLoader.js";
+import NavManager from "../../../manager/NavManager.js";
+import DeviceManager from "../../../manager/devices.js";
+import config from "../../../config.json";
 
 var SelectPrinterClass = function SelectPrinterClass(){
   this.content = null;
@@ -79,4 +77,4 @@ SelectPrinterClass.prototype.show = function () {
 SelectPrinterClass.prototype.dispose = function () {
 };
 
-module.exports = SelectPrinterClass;
+export default SelectPrinterClass;

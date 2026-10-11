@@ -1,14 +1,11 @@
 "use strict";
 
-var EventEmitter = require('events').EventEmitter,
-    util = require('util');
-var root = __dirname + "/../";
-
+import { EventEmitter, inherits } from "../lib/events.js";
 var ModalManagerClass = function(){
   EventEmitter.call(this);
 };
 
-util.inherits(ModalManagerClass, EventEmitter);
+inherits(ModalManagerClass, EventEmitter);
 
 ModalManagerClass.prototype.showLoader = function(title) {
   this.setProgress(0);
@@ -62,4 +59,4 @@ ModalManagerClass.getInstance = function(){
   return this.instance;
 }
 
-module.exports = ModalManagerClass.getInstance();
+export default ModalManagerClass.getInstance();

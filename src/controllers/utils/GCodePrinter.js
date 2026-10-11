@@ -1,9 +1,9 @@
 "use strict";
 
-var _root = __dirname + "/../../";
-var DeviceManager = require(_root+"manager/devices.js");
-var GCodeSender = require(_root+"controllers/utils/GCodeSender.js");
-var lodash = require("lodash");
+import DeviceManager from "../../manager/devices.js";
+import GCodeSender from "./GCodeSender.js";
+import lodash from "lodash";
+import ModalManager from "../../manager/modalManager.js";
 
 var GCodePrinterClass = function(){
   this.sendExtruderOffset = false;
@@ -436,4 +436,4 @@ GCodePrinterClass.prototype.finishPrint = function (callback) {
   }
 };
 
-module.exports = GCodePrinterClass;
+export default GCodePrinterClass;

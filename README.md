@@ -1,23 +1,17 @@
+DagomApp is a desktop app to set up Dagoma 3D printers over USB: printer
+detection, Z-offset calibration, PID tuning, factory reset and firmware
+flashing. It is built with [Tauri](https://tauri.app).
 
-## For debian based distribution
+## Build
 
-### Update nodejs version
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs
+Install [Rust](https://rustup.rs) and the
+[Tauri system dependencies](https://v2.tauri.app/start/prerequisites/), then:
 
-### Compile
+    cargo build --release
 
-cd ${PROJECT}/src || exit 1
+The app is `target/release/dagomapp`. To develop, see [HACKING.md](HACKING.md).
 
-sudo npm install -g electron-prebuilt@1.2.3
-rm -rf node_modules && npm install
-
-### Start
-
-npm start
-
-
-### TODO :
+## TODO
 
 - graisser les axes,
 - test de premiere couche

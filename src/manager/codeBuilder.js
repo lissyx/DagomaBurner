@@ -1,13 +1,12 @@
 "use strict";
 
-var root = __dirname + "/../";
-var EventEmitter = require('events').EventEmitter,
-    util = require('util'),
-    Avrgirl = require('avrgirl-arduino'),
-    boards = require('avrgirl-arduino/boards'),
-    lodash = require('lodash');
+import { invoke } from "@tauri-apps/api/core";
 
-module.exports = function(device, file, type, callback){
+// `file` is the File picked in the page (browsers don't expose its path), and
+// `type` the bootloader name ("melzi" or "mega"). Flashing used to go through
+// avrgirl-arduino; it is now done by src-tauri/src/flasher, which also holds
+// the board definitions.
+export default function(device, file, type, callback){
   if(device == null)
     return callback(false);
 
@@ -15,40 +14,22 @@ module.exports = function(device, file, type, callback){
 
   var timeOut3DPrinterSearch;
   var success = true;
-  var board = "mega";
   device.isBuilding = true;
   device.pause();
 
-
-  boards.byName.melzi = {
-    baud: 57600,
-    signature: new Buffer([0x1e, 0x97, 0x05]), // ATmega2560
-    //0x1e9705
-    pageSize: 256,
-    delay1: 10,
-    delay2: 1,
-    timeout: 0x320,//0xc8, // Up to 800ms
-    stabDelay:0x64,
-    cmdexeDelay:0x19,
-    synchLoops:0x20,
-    byteDelay:0x00,
-    pollValue:0x53,
-    pollIndex:0x03,
-    productId: ['0x0403', '0x6001'],
-    protocol: 'stk500v1'
-  };
-
-  // Add timeout to mks too. In case of
-  boards.byName.mega.timeout = 0x320;
   console.log("ready to flash");
   setTimeout(function(){
     console.log("flash");
-    var avrgirl = new Avrgirl({
-      board: type, //"melzi",//"mega",
-      port: device.portName,
-      debug: true
-    });
 
+    function flash(hex, done){
+      invoke("flash_firmware", {
+        port: device.portName,
+        hex: hex,
+        board: type
+      }).then(function(){
+        done(null);
+      }, done);
+    }
 
     function printerFound(){
       clearTimeout(timeOut3DPrinterSearch);
@@ -68,33 +49,39 @@ module.exports = function(device, file, type, callback){
       device.on("printerFound", printerFound);
     }
 
-    avrgirl.flash(file, function (error) {
-      if (error) {
-        console.log("retrying after error", error);
-        //callback(false);
+    file.text().then(function(hex){
+      flash(hex, function (error) {
+        if (error) {
+          console.log("retrying after error", error);
+          //callback(false);
 
-        //device.resetPort();
-        // Retry immediatly
-        setTimeout( function() {
-          avrgirl.flash(file, function (error) {
+          //device.resetPort();
+          // Retry immediatly
+          setTimeout( function() {
+            flash(hex, function (error) {
 
-            if (error) {
-              console.log("ok, giving up with error", error);
-              success = false;
-            } else {
-              console.log('done.');
-              success = true;
-            }
+              if (error) {
+                console.log("ok, giving up with error", error);
+                success = false;
+              } else {
+                console.log('done.');
+                success = true;
+              }
 
-            resetAndWaitPort(true/*, result.message*/);
-          });
-        }, 5000);
+              resetAndWaitPort(true/*, result.message*/);
+            });
+          }, 5000);
 
-      } else {
-        console.log('done.');
-        success = true;
-        resetAndWaitPort(true/*, result.message*/);
-      }
+        } else {
+          console.log('done.');
+          success = true;
+          resetAndWaitPort(true/*, result.message*/);
+        }
+      });
+    }, function(error){
+      console.log("can't read firmware file", error);
+      success = false;
+      resetAndWaitPort(true);
     });
 
   },

@@ -1,5 +1,11 @@
 # Changelog 
 
+## Unreleased
+- Port from Electron 1.2.3 to Tauri 2 with a Vite frontend
+- Flash firmwares and access serial ports from Rust instead of avrgirl-arduino and node-serialport
+- Detect FTDI and Silicon Labs USB adapters by vendor ID too
+- Remove the remote support (SAV / Dago'Experts) and the auto-update
+
 ## 0.2.61
 - Add CH340 Silicon Labs drivers support 
 
