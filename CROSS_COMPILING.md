@@ -28,6 +28,7 @@ which needs no Microsoft SDK. Only 64-bit x86 Windows is supported.
 The app is `target/x86_64-pc-windows-gnu/release/dagomapp.exe`. Unlike MSVC
 builds, MinGW builds load `WebView2Loader.dll` at run time: copy
 `target/x86_64-pc-windows-gnu/release/WebView2Loader.dll` next to the `.exe`.
+The Windows installer includes it, see [PACKAGING.md](PACKAGING.md).
 
 The app also needs the Microsoft Edge WebView2 Runtime, which comes with
 Windows 11 and up to date Windows 10 installs.
@@ -70,9 +71,9 @@ Apple hardware: check that your use complies before setting this up.
        cargo build --release --config .cargo/osxcross.toml --target aarch64-apple-darwin
 
 The apps are `target/<target>/release/dagomapp`: plain executables, not `.app`
-bundles, which Tauri only makes on macOS. Apple Silicon Macs refuse to run
-unsigned executables: if yours isn't ad-hoc signed by the osxcross linker, sign
-it with [rcodesign](https://github.com/indygreg/apple-platform-rs/tree/main/apple-codesign):
+bundles, which Tauri only makes on macOS (see [PACKAGING.md](PACKAGING.md)).
+Apple Silicon Macs refuse to run unsigned executables: if yours isn't ad-hoc
+signed by the osxcross linker, sign it with [rcodesign](https://github.com/indygreg/apple-platform-rs/tree/main/apple-codesign):
 
     cargo install apple-codesign
     rcodesign sign target/aarch64-apple-darwin/release/dagomapp

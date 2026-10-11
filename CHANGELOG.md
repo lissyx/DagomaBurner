@@ -5,6 +5,8 @@
 - Flash firmwares and access serial ports from Rust instead of avrgirl-arduino and node-serialport
 - Detect FTDI and Silicon Labs USB adapters by vendor ID too
 - Remove the remote support (SAV / Dago'Experts) and the auto-update
+- Package as .deb and .rpm, a Windows NSIS installer and a macOS .dmg
+- Give the logged-in user access to the printers on Linux, through a udev rule installed by the packages
 
 ## 0.2.61
 - Add CH340 Silicon Labs drivers support 

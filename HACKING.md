@@ -50,9 +50,10 @@ protocols against simulated bootloaders.
 
     cargo tauri build
 
-builds the installers for the current OS into `target/release/bundle/`. To
-build the Windows and macOS apps from Linux, see
-[CROSS_COMPILING.md](CROSS_COMPILING.md).
+builds the installers for the current OS into `target/release/bundle/`. See
+[PACKAGING.md](PACKAGING.md) for each platform's requirements and signing, and
+[CROSS_COMPILING.md](CROSS_COMPILING.md) to build the Windows and macOS apps
+from Linux.
 
 ## Layout
 
@@ -66,6 +67,7 @@ build the Windows and macOS apps from Linux, see
   - `config.json`: the supported printers.
 - `src-tauri/`: the Rust backend.
   - `build.rs`: builds the frontend for non-dev builds.
+  - `linux/`: the udev rule and scripts of the Linux packages.
   - `serial.rs`: serial port listing and I/O.
   - `flasher/`: firmware upload (STK500v1 for Melzi, STK500v2 for Mega 2560).
   - `windows.rs`: the window, ported from the Electron main process.

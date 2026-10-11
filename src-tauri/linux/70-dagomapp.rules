@@ -1,0 +1,5 @@
+# Give the logged-in user access to the USB serial adapters of Dagoma printers
+# (FTDI and Silicon Labs), so DagomApp works without joining the dialout group.
+# The "uaccess" tag must be set before 73-seat-late.rules applies it.
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", TAG+="uaccess"
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", TAG+="uaccess"
