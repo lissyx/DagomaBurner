@@ -1,0 +1,4 @@
+# Cross-compiling to Windows with MinGW-w64, see CROSS_COMPILING.md.
+[target.x86_64-pc-windows-gnu]
+linker = "x86_64-w64-mingw32-gcc"
+ar = "x86_64-w64-mingw32-ar"

@@ -50,8 +50,9 @@ protocols against simulated bootloaders.
 
     cargo tauri build
 
-builds the installers for the current OS into `target/release/bundle/`. Tauri
-doesn't cross-compile between operating systems: build on each one, or in CI.
+builds the installers for the current OS into `target/release/bundle/`. To
+build the Windows and macOS apps from Linux, see
+[CROSS_COMPILING.md](CROSS_COMPILING.md).
 
 ## Layout
 

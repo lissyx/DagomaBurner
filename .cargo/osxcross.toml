@@ -1,0 +1,18 @@
+# Cross-compiling to macOS with osxcross, see CROSS_COMPILING.md. Use it with
+#   cargo build --config .cargo/osxcross.toml --target x86_64-apple-darwin
+# It isn't in config.toml since it would break native builds on macOS.
+
+[target.x86_64-apple-darwin]
+linker = "o64-clang"
+
+[target.aarch64-apple-darwin]
+linker = "oa64-clang"
+
+# For the C/Objective-C code of dependencies (built with the cc crate).
+[env]
+CC_x86_64_apple_darwin = "o64-clang"
+CXX_x86_64_apple_darwin = "o64-clang++"
+AR_x86_64_apple_darwin = "llvm-ar"
+CC_aarch64_apple_darwin = "oa64-clang"
+CXX_aarch64_apple_darwin = "oa64-clang++"
+AR_aarch64_apple_darwin = "llvm-ar"
